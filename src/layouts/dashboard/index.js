@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
-
+import DownloadLink from "react-download-link";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import { Widget } from "@uploadcare/react-widget";
@@ -45,7 +45,18 @@ function Dashboard() {
         <Grid item xs={12}>
           <h3>Upload Profile Questions File</h3>
           <Widget publicKey="demopublickey" previewStep clearable />
-          {/* <Grid item xs={12} md={6} lg={3}>
+        </Grid>
+        <Grid mt={4}>
+          <h3>Download O3 Questions File</h3>
+          <DownloadLink
+            className="download-btn"
+            label="Download"
+            filename="fileName.txt"
+            exportFile={() => "Client side cache data here…"}
+          />
+        </Grid>
+
+        {/* <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="dark"
@@ -60,7 +71,7 @@ function Dashboard() {
               />
             </MDBox>
           </Grid> */}
-          {/* <Grid item xs={12} md={6} lg={3}>
+        {/* <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 icon="leaderboard"
@@ -74,7 +85,7 @@ function Dashboard() {
               />
             </MDBox>
           </Grid> */}
-          {/* <Grid item xs={12} md={6} lg={3}>
+        {/* <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="success"
@@ -89,7 +100,7 @@ function Dashboard() {
               />
             </MDBox>
           </Grid> */}
-          {/* <Grid item xs={12} md={6} lg={3}>
+        {/* <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="primary"
@@ -104,7 +115,7 @@ function Dashboard() {
               />
             </MDBox>
           </Grid> */}
-        </Grid>
+
         {/* <MDBox mt={4.5}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
