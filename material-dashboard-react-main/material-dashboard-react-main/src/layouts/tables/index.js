@@ -20,12 +20,15 @@ Coded by www.creative-tim.com
 // // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 // import MDTypography from "components/MDTypography";
-
+// import Button from "@material-ui/core/Button";
 // Material Dashboard 2 React example components
 import { Grid } from "@mui/material";
+import DownloadLink from "react-download-link";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import { Widget } from "@uploadcare/react-widget";
+import "./styles.css";
+// import { useState } from "react";
 
 // ---------------------------
 // Configure react-uploader...
@@ -38,6 +41,12 @@ import { Widget } from "@uploadcare/react-widget";
 // import projectsTableData from "layouts/tables/data/projectsTableData";
 
 function Tables() {
+  // const onDownload = () => {
+  //   const link = document.createElement("a");
+  //   link.download = `download.txt`;
+  //   link.href = "./download.txt";
+  //   link.click();
+  // };
   // const { columns, rows } = authorsTableData();
   // const { columns: pColumns, rows: pRows } = projectsTableData();
   return (
@@ -46,7 +55,16 @@ function Tables() {
       <MDBox pt={6} pb={3}>
         <Grid item xs={12}>
           <h3>Upload O3 Questions File</h3>
-          <Widget publicKey="demopublickey" previewStep="true" />
+          <Widget publicKey="demopublickey" previewStep clearable />
+        </Grid>
+        <Grid mt={4}>
+          <h3>Download O3 Questions File</h3>
+          <DownloadLink
+            className="download-btn"
+            label="Download"
+            filename="fileName.txt"
+            exportFile={() => "Client side cache data here…"}
+          />
         </Grid>
       </MDBox>
       {/* <MDBox pt={6} pb={3}>

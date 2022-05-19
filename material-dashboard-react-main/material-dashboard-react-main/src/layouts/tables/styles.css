@@ -1,0 +1,14 @@
+ .download-btn {
+     /* background-color: blue; */
+     background-color: #157cfc;
+     color: white;
+     margin-top: 20px;
+     padding: .6em 1.6em;
+     text-decoration: none;
+     border-radius: 6px;
+     box-sizing: border-box;
+ }
+
+ a:link {
+     color: white !important;
+ }

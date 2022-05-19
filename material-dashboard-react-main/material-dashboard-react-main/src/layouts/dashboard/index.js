@@ -44,7 +44,7 @@ function Dashboard() {
       <MDBox pt={6} pb={3}>
         <Grid item xs={12}>
           <h3>Upload Profile Questions File</h3>
-          <Widget publicKey="demopublickey" previewStep="true" />
+          <Widget publicKey="demopublickey" previewStep clearable />
           {/* <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
