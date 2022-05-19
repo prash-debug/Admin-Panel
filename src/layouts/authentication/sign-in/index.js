@@ -40,10 +40,11 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+// import Dashboard from "layouts/dashboard";
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
-
+  const [passwordlog, setPasswordlog] = useState(" ");
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   return (
@@ -87,7 +88,15 @@ function Basic() {
               <MDInput type="email" label="Email" fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput
+                type="password"
+                label="Password"
+                onChange={(event) => {
+                  setPasswordlog(event.target.value);
+                  // console.log(passwordlog);
+                }}
+                fullWidth
+              />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -102,7 +111,21 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+              <MDButton
+                variant="gradient"
+                color="info"
+                fullWidth
+                onClick={() => {
+                  console.log(localStorage.getItem("password"));
+
+                  if (localStorage.getItem("password") === passwordlog) {
+                    // <MDTypography component={Link} to="/dashboard" />;
+                    console.log("login hua");
+                  } else {
+                    console.log("nahi hua");
+                  }
+                }}
+              >
                 sign in
               </MDButton>
             </MDBox>
