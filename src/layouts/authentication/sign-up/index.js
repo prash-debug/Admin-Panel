@@ -15,10 +15,10 @@ Coded by www.creative-tim.com
 
 // react-router-dom components
 import { Link } from "react-router-dom";
-
+import React, { useState } from "react";
 // @mui material components
 import Card from "@mui/material/Card";
-import Checkbox from "@mui/material/Checkbox";
+// import Checkbox from "@mui/material/Checkbox";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -33,6 +33,11 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
 function Cover() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [, setFlag] = useState(false);
   // const handleClick = () => {
   //   localStorage.setItem("names", names.value);
   //   localStorage.setItem("email", email.value);
@@ -62,10 +67,24 @@ function Cover() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="text" label="Name" id="name" variant="standard" fullWidth />
+              <MDInput
+                type="text"
+                label="Name"
+                id="name"
+                variant="standard"
+                fullWidth
+                onChange={(event) => setName(event.target.value)}
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" id="email" variant="standard" fullWidth />
+              <MDInput
+                type="email"
+                label="Email"
+                id="email"
+                variant="standard"
+                fullWidth
+                onChange={(event) => setEmail(event.target.value)}
+              />
             </MDBox>
             <MDBox mb={2}>
               <MDInput
@@ -74,9 +93,10 @@ function Cover() {
                 id="password"
                 variant="standard"
                 fullWidth
+                onChange={(event) => setPassword(event.target.value)}
               />
             </MDBox>
-            <MDBox display="flex" alignItems="center" ml={-1}>
+            {/* <MDBox display="flex" alignItems="center" ml={-1}>
               <Checkbox />
               <MDTypography
                 variant="button"
@@ -96,17 +116,31 @@ function Cover() {
               >
                 Terms and Conditions
               </MDTypography>
-            </MDBox>
+            </MDBox> */}
             <MDBox mt={4} mb={1}>
               <MDButton
                 variant="gradient"
                 color="info"
                 fullWidth
-                onClick={(name, email, password) => {
-                  localStorage.setItem("name", name.value);
-                  localStorage.setItem("email", email.value);
-                  localStorage.setItem("password", password.value);
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!name || !email || !password) {
+                    setFlag(true);
+                  } else {
+                    setFlag(false);
+                    localStorage.setItem("SubmissionName", JSON.stringify(name));
+                    localStorage.setItem("SubmissionEmail", JSON.stringify(email));
+                    localStorage.setItem("SubmissionPassword", JSON.stringify(password));
+                    console.log("Saved in Local Storage");
+                  }
+                  // console.log("entered onClick", e);
                 }}
+                // onClick={(name, email, password) => {
+                //   console.log("entered sign up");
+                //   localStorage.setItem("name", name.value);
+                //   localStorage.setItem("email", email.value);
+                //   localStorage.setItem("password", password.value);
+                // }}
               >
                 sign up
               </MDButton>

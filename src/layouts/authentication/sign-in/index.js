@@ -14,9 +14,8 @@ Coded by www.creative-tim.com
 */
 
 import { useState } from "react";
-
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -43,8 +42,11 @@ import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 // import Dashboard from "layouts/dashboard";
 
 function Basic() {
-  const [rememberMe, setRememberMe] = useState(false);
+  const [emaillog, setEmaillog] = useState(" ");
   const [passwordlog, setPasswordlog] = useState(" ");
+  const [, setFlag] = useState(false);
+
+  const [rememberMe, setRememberMe] = useState(false);
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   return (
@@ -85,17 +87,19 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput
+                type="email"
+                label="Email"
+                fullWidth
+                onChange={(event) => setEmaillog(event.target.value)}
+              />
             </MDBox>
             <MDBox mb={2}>
               <MDInput
                 type="password"
                 label="Password"
-                onChange={(event) => {
-                  setPasswordlog(event.target.value);
-                  // console.log(passwordlog);
-                }}
                 fullWidth
+                onChange={(event) => setPasswordlog(event.target.value)}
               />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
@@ -115,16 +119,33 @@ function Basic() {
                 variant="gradient"
                 color="info"
                 fullWidth
-                onClick={() => {
-                  console.log(localStorage.getItem("password"));
-
-                  if (localStorage.getItem("password") === passwordlog) {
-                    // <MDTypography component={Link} to="/dashboard" />;
-                    console.log("login hua");
+                onClick={(e) => {
+                  e.preventDefault();
+                  const pass = localStorage.getItem("SubmissionPassword").replace(/"/g, "");
+                  const mail = localStorage.getItem("SubmissionEmail").replace(/"/g, "");
+                  console.log(pass, mail);
+                  if (!emaillog || !passwordlog) {
+                    setFlag(true);
+                    console.log("Fill all fields");
+                  } else if (passwordlog !== pass || emaillog !== mail) {
+                    console.log("LOGIN FAILED");
+                    setFlag(true);
                   } else {
-                    console.log("nahi hua");
+                    setFlag(false);
+                    console.log("LOGIN SUCCESS");
+                    // <Navigate to="/dashboard" />;
                   }
                 }}
+                // onClick={() => {
+                //   console.log(localStorage.getItem("password"));
+
+                //   if (localStorage.getItem("password") === passwordlog) {
+                //     // <MDTypography component={Link} to="/dashboard" />;
+                //     console.log("login hua");
+                //   } else {
+                //     console.log("nahi hua");
+                //   }
+                // }}
               >
                 sign in
               </MDButton>
