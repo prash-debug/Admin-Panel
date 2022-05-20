@@ -15,73 +15,84 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
-
+// import React, { useState } from "react";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
+import Button from "@mui/material/Button";
 
 // Material Dashboard 2 React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import MasterCard from "examples/Cards/MasterCard";
-import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
+// import { Widget } from "@uploadcare/react-widget";
+import o3ProfileQuestionService from "services/o3-profile.service";
+// import Footer from "examples/Footer";
+// import MasterCard from "examples/Cards/MasterCard";
+// import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
-// Billing page components
-import PaymentMethod from "layouts/billing/components/PaymentMethod";
-import Invoices from "layouts/billing/components/Invoices";
-import BillingInformation from "layouts/billing/components/BillingInformation";
-import Transactions from "layouts/billing/components/Transactions";
+// // Billing page components
+// import PaymentMethod from "layouts/billing/components/PaymentMethod";
+// import Invoices from "layouts/billing/components/Invoices";
+// import BillingInformation from "layouts/billing/components/BillingInformation";
+// import Transactions from "layouts/billing/components/Transactions";
+import axios from "axios";
 
 function Billing() {
+  // const [selectedFile, setSelectedFile] = React.useState(null);
+
+  const uploadFile = (url, file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    axios
+      .put(url, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const onChange = (e) => {
+    const url = "http://localhost:9000/profile-questions/upload";
+    const file = e.target.files[0];
+    uploadFile(url, file);
+  };
+
   return (
     <DashboardLayout>
-      <DashboardNavbar absolute isMini />
-      <MDBox mt={8}>
-        <MDBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={8}>
-              <Grid container spacing={3}>
-                <Grid item xs={12} xl={6}>
-                  <MasterCard number={4562112245947852} holder="jack peterson" expires="11/22" />
-                </Grid>
-                <Grid item xs={12} md={6} xl={3}>
-                  <DefaultInfoCard
-                    icon="account_balance"
-                    title="salary"
-                    description="Belong Interactive"
-                    value="+$2000"
-                  />
-                </Grid>
-                <Grid item xs={12} md={6} xl={3}>
-                  <DefaultInfoCard
-                    icon="paypal"
-                    title="paypal"
-                    description="Freelance Payment"
-                    value="$455.00"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <PaymentMethod />
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <Invoices />
-            </Grid>
-          </Grid>
-        </MDBox>
-        <MDBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={7}>
-              <BillingInformation />
-            </Grid>
-            <Grid item xs={12} md={5}>
-              <Transactions />
-            </Grid>
-          </Grid>
-        </MDBox>
+      <DashboardNavbar />
+      <MDBox pt={6} pb={3}>
+        <Grid>
+          <h3>Upload Profile Questions File</h3>
+          <label htmlFor="file-upload" class="custom-file-upload">
+            Custom Upload
+          </label>
+          <input
+            id="file-upload"
+            className="upload-btn"
+            type="file"
+            onChange={onChange}
+            accept="image/*"
+          />
+          {/* <input className="upload-btn" type="file" onChange={onChange} accept="image/*" /> */}
+          {/* <Widget publicKey="demopublickey" previewStep clearable onChange={onChange} /> */}
+        </Grid>
+        <Grid mt={4}>
+          <h3>Download Profile Questions File</h3>
+          <Button
+            variant="contained"
+            className="download-btn"
+            type="submit"
+            onClick={o3ProfileQuestionService.profileQuestionsDownload}
+          >
+            Download file
+          </Button>
+        </Grid>
       </MDBox>
-      <Footer />
     </DashboardLayout>
   );
 }

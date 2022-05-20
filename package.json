@@ -27,6 +27,7 @@
     "@testing-library/react": "12.1.2",
     "@testing-library/user-event": "13.5.0",
     "@uploadcare/react-widget": "^2.1.0",
+    "axios": "^0.27.2",
     "chart.js": "3.4.1",
     "chroma-js": "2.4.2",
     "prop-types": "15.8.1",

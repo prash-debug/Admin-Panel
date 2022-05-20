@@ -23,11 +23,15 @@ import MDBox from "components/MDBox";
 // import Button from "@material-ui/core/Button";
 // Material Dashboard 2 React example components
 import { Grid } from "@mui/material";
-import DownloadLink from "react-download-link";
+import Button from "@mui/material/Button";
+
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import { Widget } from "@uploadcare/react-widget";
+// import { Widget } from "@uploadcare/react-widget";
 import "./styles.css";
+import o3QuestionService from "services/o3-questions.service";
+import axios from "axios";
+
 // import { useState } from "react";
 
 // ---------------------------
@@ -35,12 +39,34 @@ import "./styles.css";
 // ---------------------------
 // import Footer from "examples/Footer";
 // import DataTable from "examples/Tables/DataTable";
-
+// import Stack from "@mui/material/Stack";
 // // Data
 // import authorsTableData from "layouts/tables/data/authorsTableData";
 // import projectsTableData from "layouts/tables/data/projectsTableData";
 
 function Tables() {
+  const uploadFile = (url, file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    axios
+      .put(url, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const onChange = (e) => {
+    const url = "http://localhost:9000/o3-questions/upload";
+    const file = e.target.files[0];
+    uploadFile(url, file);
+  };
   // const onDownload = () => {
   //   const link = document.createElement("a");
   //   link.download = `download.txt`;
@@ -49,22 +75,35 @@ function Tables() {
   // };
   // const { columns, rows } = authorsTableData();
   // const { columns: pColumns, rows: pRows } = projectsTableData();
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox pt={6} pb={3}>
-        <Grid item xs={12}>
+        <Grid item>
           <h3>Upload O3 Questions File</h3>
-          <Widget publicKey="demopublickey" previewStep clearable />
+          <label htmlFor="file-upload" class="custom-file-upload">
+            Custom Upload
+          </label>
+          <input
+            id="file-upload"
+            className="upload-btn"
+            type="file"
+            onChange={onChange}
+            accept="image/*"
+          />
+          {/* <Widget publicKey="demopublickey" previewStep clearable onChange={onChange} /> */}
         </Grid>
         <Grid mt={4}>
-          <h3>Download O3 Questions File</h3>
-          <DownloadLink
+          <h3>Download O3 Questions </h3>
+          <Button
+            variant="contained"
             className="download-btn"
-            label="Download"
-            filename="fileName.txt"
-            exportFile={() => "Client side cache data here…"}
-          />
+            type="submit"
+            onClick={o3QuestionService.o3Download}
+          >
+            Download file
+          </Button>
         </Grid>
       </MDBox>
       {/* <MDBox pt={6} pb={3}>

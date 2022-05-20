@@ -36,9 +36,9 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-import Dashboard from "layouts/dashboard";
+// import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
-// import Billing from "layouts/billing";
+import Billing from "layouts/billing";
 // import RTL from "layouts/rtl";
 // import Notifications from "layouts/notifications";
 // import Profile from "layouts/profile";
@@ -49,14 +49,14 @@ import SignUp from "layouts/authentication/sign-up";
 import Icon from "@mui/material/Icon";
 
 const routes = [
-  {
-    type: "collapse",
-    name: "Manage Profile Questions",
-    key: "dashboard",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
-    component: <Dashboard />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Manage Profile Questions",
+  //   key: "dashboard",
+  //   icon: <Icon fontSize="small">dashboard</Icon>,
+  //   route: "/dashboard",
+  //   component: <Dashboard />,
+  // },
   {
     type: "collapse",
     name: "Manage O3 Questions",
@@ -65,14 +65,14 @@ const routes = [
     route: "/o3Questions",
     component: <Tables />,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Billing",
-  //   key: "billing",
-  //   icon: <Icon fontSize="small">receipt_long</Icon>,
-  //   route: "/billing",
-  //   component: <Billing />,
-  // },
+  {
+    type: "collapse",
+    name: "Manage Profile Questions",
+    key: "profile",
+    icon: <Icon fontSize="small">receipt_long</Icon>,
+    route: "/profileQuestions",
+    component: <Billing />,
+  },
   // {
   //   type: "collapse",
   //   name: "RTL",
