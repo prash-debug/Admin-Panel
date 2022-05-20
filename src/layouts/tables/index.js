@@ -29,8 +29,9 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 // import { Widget } from "@uploadcare/react-widget";
 import "./styles.css";
+import CONSTANTS from "constants";
 import o3QuestionService from "services/o3-questions.service";
-import axios from "axios";
+// import axios from "axios";
 
 // import { useState } from "react";
 
@@ -45,27 +46,30 @@ import axios from "axios";
 // import projectsTableData from "layouts/tables/data/projectsTableData";
 
 function Tables() {
-  const uploadFile = (url, file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    axios
-      .put(url, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const uploadFile = (url, file) => {
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+  //   axios
+  //     .put(url, formData, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   const onChange = (e) => {
-    const url = "http://localhost:9000/o3-questions/upload";
+    // var name = e.target.files[0].name;
+    // const url = "http://localhost:9000/o3-questions/upload";
+    const url = `${CONSTANTS.URLS.BASE_URL}${CONSTANTS.URLS.O3_QUESTIONS_UPLOAD}`;
     const file = e.target.files[0];
-    uploadFile(url, file);
+    o3QuestionService.o3Upload(url, file);
+    // console.log(e.target.files[0].name);
   };
   // const onDownload = () => {
   //   const link = document.createElement("a");
@@ -82,16 +86,17 @@ function Tables() {
       <MDBox pt={6} pb={3}>
         <Grid item>
           <h3>Upload O3 Questions File</h3>
-          <label htmlFor="file-upload" class="custom-file-upload">
+          <label htmlFor="file-upload" className="custom-file-upload">
             Custom Upload
+            <input
+              id="file-upload"
+              className="upload-btn"
+              type="file"
+              onChange={(e) => onChange(e)}
+              accept="image/*"
+            />
           </label>
-          <input
-            id="file-upload"
-            className="upload-btn"
-            type="file"
-            onChange={onChange}
-            accept="image/*"
-          />
+
           {/* <Widget publicKey="demopublickey" previewStep clearable onChange={onChange} /> */}
         </Grid>
         <Grid mt={4}>

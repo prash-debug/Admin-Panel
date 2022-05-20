@@ -68,16 +68,16 @@ function Billing() {
       <MDBox pt={6} pb={3}>
         <Grid>
           <h3>Upload Profile Questions File</h3>
-          <label htmlFor="file-upload" class="custom-file-upload">
+          <label htmlFor="file-upload" className="custom-file-upload">
             Custom Upload
+            <input
+              id="file-upload"
+              className="upload-btn"
+              type="file"
+              onChange={onChange}
+              accept="image/*"
+            />
           </label>
-          <input
-            id="file-upload"
-            className="upload-btn"
-            type="file"
-            onChange={onChange}
-            accept="image/*"
-          />
           {/* <input className="upload-btn" type="file" onChange={onChange} accept="image/*" /> */}
           {/* <Widget publicKey="demopublickey" previewStep clearable onChange={onChange} /> */}
         </Grid>
