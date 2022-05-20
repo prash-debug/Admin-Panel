@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 // @mui material components
 import Card from "@mui/material/Card";
@@ -25,6 +25,8 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
+import Stack from "@mui/material/Stack";
+import Alert from "@mui/material/Alert";
 
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
@@ -33,11 +35,14 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
 function Cover() {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [, setFlag] = useState(false);
+  const [flag, setFlag] = useState(false);
+  // const [signUp, setSignUp] = useState(false);
   // const handleClick = () => {
   //   localStorage.setItem("names", names.value);
   //   localStorage.setItem("email", email.value);
@@ -126,12 +131,15 @@ function Cover() {
                   e.preventDefault();
                   if (!name || !email || !password) {
                     setFlag(true);
+                    // console.log(flag);
                   } else {
                     setFlag(false);
+                    // setSignUp(true);
                     localStorage.setItem("SubmissionName", JSON.stringify(name));
                     localStorage.setItem("SubmissionEmail", JSON.stringify(email));
                     localStorage.setItem("SubmissionPassword", JSON.stringify(password));
                     console.log("Saved in Local Storage");
+                    navigate("/o3Questions");
                   }
                   // console.log("entered onClick", e);
                 }}
@@ -145,6 +153,18 @@ function Cover() {
                 sign up
               </MDButton>
             </MDBox>
+            {flag && (
+              <Stack sx={{ width: "100%" }} spacing={2}>
+                <Alert variant="filled" severity="error">
+                  Please enter all the details correctly
+                </Alert>
+              </Stack>
+            )}
+            {/* {signUp && (
+              <Alert variant="filled" severity="success">
+                Signed Up Successfully!
+              </Alert>
+            )} */}
             <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">
                 Already have an account?{" "}

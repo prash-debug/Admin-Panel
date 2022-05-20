@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 import { useState } from "react";
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -33,19 +33,19 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
-
+import Alert from "@mui/material/Alert";
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
-
+import Stack from "@mui/material/Stack";
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 // import Dashboard from "layouts/dashboard";
 
 function Basic() {
+  const navigate = useNavigate();
   const [emaillog, setEmaillog] = useState(" ");
   const [passwordlog, setPasswordlog] = useState(" ");
-  const [, setFlag] = useState(false);
-
+  const [flag, setFlag] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -133,7 +133,7 @@ function Basic() {
                   } else {
                     setFlag(false);
                     console.log("LOGIN SUCCESS");
-                    // <Navigate to="/dashboard" />;
+                    navigate("/o3Questions");
                   }
                 }}
                 // onClick={() => {
@@ -150,6 +150,13 @@ function Basic() {
                 sign in
               </MDButton>
             </MDBox>
+            {flag && (
+              <Stack sx={{ width: "100%" }} spacing={2}>
+                <Alert variant="filled" severity="error">
+                  Please enter all the details correctly
+                </Alert>
+              </Stack>
+            )}
             <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">
                 Don&apos;t have an account?{" "}
