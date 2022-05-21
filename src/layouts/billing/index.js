@@ -35,9 +35,11 @@ import o3ProfileQuestionService from "services/o3-profile.service";
 // import BillingInformation from "layouts/billing/components/BillingInformation";
 // import Transactions from "layouts/billing/components/Transactions";
 import axios from "axios";
+import { useState } from "react";
 
 function Billing() {
   // const [selectedFile, setSelectedFile] = React.useState(null);
+  const [text, setText] = useState("");
 
   const uploadFile = (url, file) => {
     const formData = new FormData();
@@ -60,6 +62,7 @@ function Billing() {
     const url = "http://localhost:9000/profile-questions/upload";
     const file = e.target.files[0];
     uploadFile(url, file);
+    setText(e.target.files[0].name);
   };
 
   return (
@@ -74,10 +77,10 @@ function Billing() {
               id="file-upload"
               className="upload-btn"
               type="file"
-              onChange={onChange}
-              accept="image/*"
+              onChange={(e) => onChange(e)}
             />
           </label>
+          <span>{text}</span>
           {/* <input className="upload-btn" type="file" onChange={onChange} accept="image/*" /> */}
           {/* <Widget publicKey="demopublickey" previewStep clearable onChange={onChange} /> */}
         </Grid>
