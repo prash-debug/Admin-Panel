@@ -47,18 +47,12 @@ import { useState } from "react";
 
 function Tables() {
   const [text, setText] = useState("");
-  //
-  // const showFileName = (e) => {
-  //   // console.log(e.target.files[0].name);
-  //   // textInput.current = e.target.files[0].name;
-  //   setText(e.target.files[0].name);
-  // };
+
   const onChange = (e) => {
     const url = `${CONSTANTS.URLS.BASE_URL}${CONSTANTS.URLS.O3_QUESTIONS_UPLOAD}`;
     const file = e.target.files[0];
     // console.log(file);
     o3QuestionService.o3Upload(url, file);
-    // showFileName(e);
     setText(e.target.files[0].name);
     // console.log(e.target.files[0].name);
   };
