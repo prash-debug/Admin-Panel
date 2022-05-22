@@ -14,7 +14,7 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
-function Cover() {
+function SignUp() {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -125,4 +125,4 @@ function Cover() {
   );
 }
 
-export default Cover;
+export default SignUp;

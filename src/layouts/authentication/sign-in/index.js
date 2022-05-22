@@ -22,7 +22,7 @@ import Stack from "@mui/material/Stack";
 
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
-function Basic() {
+function SignIn() {
   const navigate = useNavigate();
   const [emaillog, setEmaillog] = useState(" ");
   const [passwordlog, setPasswordlog] = useState(" ");
@@ -147,4 +147,4 @@ function Basic() {
   );
 }
 
-export default Basic;
+export default SignIn;
