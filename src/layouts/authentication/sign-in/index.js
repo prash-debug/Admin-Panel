@@ -30,6 +30,24 @@ function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const pass = localStorage.getItem("SubmissionPassword").replace(/"/g, "");
+    const mail = localStorage.getItem("SubmissionEmail").replace(/"/g, "");
+    console.log(pass, mail);
+    if (!emaillog || !passwordlog) {
+      setFlag(true);
+      console.log("Fill all fields");
+    } else if (passwordlog !== pass || emaillog !== mail) {
+      console.log("LOGIN FAILED");
+      setFlag(true);
+    } else {
+      setFlag(false);
+      console.log("LOGIN SUCCESS");
+      navigate("/o3Questions");
+    }
+  };
+
   return (
     <BasicLayout image={bgImage}>
       <Card>
@@ -96,38 +114,7 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton
-                variant="gradient"
-                color="info"
-                fullWidth
-                onClick={(e) => {
-                  e.preventDefault();
-                  const pass = localStorage.getItem("SubmissionPassword").replace(/"/g, "");
-                  const mail = localStorage.getItem("SubmissionEmail").replace(/"/g, "");
-                  console.log(pass, mail);
-                  if (!emaillog || !passwordlog) {
-                    setFlag(true);
-                    console.log("Fill all fields");
-                  } else if (passwordlog !== pass || emaillog !== mail) {
-                    console.log("LOGIN FAILED");
-                    setFlag(true);
-                  } else {
-                    setFlag(false);
-                    console.log("LOGIN SUCCESS");
-                    navigate("/o3Questions");
-                  }
-                }}
-                // onClick={() => {
-                //   console.log(localStorage.getItem("password"));
-
-                //   if (localStorage.getItem("password") === passwordlog) {
-                //     // <MDTypography component={Link} to="/dashboard" />;
-                //     console.log("login hua");
-                //   } else {
-                //     console.log("nahi hua");
-                //   }
-                // }}
-              >
+              <MDButton variant="gradient" color="info" fullWidth onClick={(e) => handleSignIn(e)}>
                 sign in
               </MDButton>
             </MDBox>

@@ -22,6 +22,19 @@ function Cover() {
   const [password, setPassword] = useState("");
 
   const [flag, setFlag] = useState(false);
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    if (!name || !email || !password) {
+      setFlag(true);
+    } else {
+      setFlag(false);
+      localStorage.setItem("SubmissionName", JSON.stringify(name));
+      localStorage.setItem("SubmissionEmail", JSON.stringify(email));
+      localStorage.setItem("SubmissionPassword", JSON.stringify(password));
+      console.log("Saved in Local Storage");
+      navigate("/o3Questions");
+    }
+  };
 
   return (
     <CoverLayout image={bgImage}>
@@ -78,26 +91,7 @@ function Cover() {
             </MDBox>
 
             <MDBox mt={4} mb={1}>
-              <MDButton
-                variant="gradient"
-                color="info"
-                fullWidth
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (!name || !email || !password) {
-                    setFlag(true);
-                    // console.log(flag);
-                  } else {
-                    setFlag(false);
-                    // setSignUp(true);
-                    localStorage.setItem("SubmissionName", JSON.stringify(name));
-                    localStorage.setItem("SubmissionEmail", JSON.stringify(email));
-                    localStorage.setItem("SubmissionPassword", JSON.stringify(password));
-                    console.log("Saved in Local Storage");
-                    navigate("/o3Questions");
-                  }
-                }}
-              >
+              <MDButton variant="gradient" color="info" fullWidth onClick={(e) => handleSignUp(e)}>
                 sign up
               </MDButton>
             </MDBox>
