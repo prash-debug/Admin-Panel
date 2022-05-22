@@ -1,6 +1,6 @@
 import MDBox from "components/MDBox";
 import { Grid } from "@mui/material";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -40,14 +40,14 @@ function O3() {
         </Grid>
         <Grid mt={4}>
           <h3>Download O3 Questions </h3>
-          <Button
+          <button
             variant="contained"
             className="download-btn"
             type="submit"
             onClick={o3QuestionService.o3Download}
           >
             Download file
-          </Button>
+          </button>
         </Grid>
       </MDBox>
     </DashboardLayout>

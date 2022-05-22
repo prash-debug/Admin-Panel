@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 
 import MDBox from "components/MDBox";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -40,14 +40,14 @@ function Profile() {
         </Grid>
         <Grid mt={4}>
           <h3>Download Profile Questions File</h3>
-          <Button
+          <button
             variant="contained"
             className="download-btn"
             type="submit"
             onClick={o3ProfileQuestionService.profileQuestionsDownload}
           >
             Download file
-          </Button>
+          </button>
         </Grid>
       </MDBox>
     </DashboardLayout>
