@@ -1,15 +1,8 @@
 import axios from "axios";
-// import axiosConfig from "../configs/axios-config";
+
 import CONSTANTS from "../constants";
 
-// const profileQuestionsAxios = axios.create({
-//   ...axiosConfig,
-// });
-
 const profileQuestionsDownload = () => {
-  //   profileQuestionsAxios
-  //     .get(CONSTANTS.URLS.PROFILE_QUESTIONS_RESPONSES_DOWNLOAD)
-  //     .then((res) => res.data);
   axios({
     url: "http://localhost:9000/profile-questions/download",
     responseType: "blob",

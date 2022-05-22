@@ -1,26 +1,8 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// react-router-dom components
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-// @mui material components
-import Card from "@mui/material/Card";
-// import Checkbox from "@mui/material/Checkbox";
 
-// Material Dashboard 2 React components
+import Card from "@mui/material/Card";
+
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
@@ -28,10 +10,8 @@ import MDButton from "components/MDButton";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 
-// Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 
-// Images
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
 function Cover() {
@@ -42,12 +22,7 @@ function Cover() {
   const [password, setPassword] = useState("");
 
   const [flag, setFlag] = useState(false);
-  // const [signUp, setSignUp] = useState(false);
-  // const handleClick = () => {
-  //   localStorage.setItem("names", names.value);
-  //   localStorage.setItem("email", email.value);
-  //   localStorage.setItem("password", password.value);
-  // };
+
   return (
     <CoverLayout image={bgImage}>
       <Card>
@@ -101,27 +76,7 @@ function Cover() {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </MDBox>
-            {/* <MDBox display="flex" alignItems="center" ml={-1}>
-              <Checkbox />
-              <MDTypography
-                variant="button"
-                fontWeight="regular"
-                color="text"
-                sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-              >
-                &nbsp;&nbsp;I agree the&nbsp;
-              </MDTypography>
-              <MDTypography
-                component="a"
-                href="#"
-                variant="button"
-                fontWeight="bold"
-                color="info"
-                textGradient
-              >
-                Terms and Conditions
-              </MDTypography>
-            </MDBox> */}
+
             <MDBox mt={4} mb={1}>
               <MDButton
                 variant="gradient"
@@ -141,14 +96,7 @@ function Cover() {
                     console.log("Saved in Local Storage");
                     navigate("/o3Questions");
                   }
-                  // console.log("entered onClick", e);
                 }}
-                // onClick={(name, email, password) => {
-                //   console.log("entered sign up");
-                //   localStorage.setItem("name", name.value);
-                //   localStorage.setItem("email", email.value);
-                //   localStorage.setItem("password", password.value);
-                // }}
               >
                 sign up
               </MDButton>
@@ -160,11 +108,7 @@ function Cover() {
                 </Alert>
               </Stack>
             )}
-            {/* {signUp && (
-              <Alert variant="filled" severity="success">
-                Signed Up Successfully!
-              </Alert>
-            )} */}
+
             <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">
                 Already have an account?{" "}
