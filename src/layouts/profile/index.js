@@ -15,7 +15,6 @@ function Profile() {
   const [text, setText] = useState("");
 
   const onChange = (e) => {
-    // const url = "http://localhost:9000/profile-questions/upload";
     const url = `${CONSTANTS.URLS.BASE_URL}${CONSTANTS.URLS.PROFILE_QUESTIONS_UPLOAD}`;
     const file = e.target.files[0];
     o3ProfileQuestionService.o3Upload(url, file);
