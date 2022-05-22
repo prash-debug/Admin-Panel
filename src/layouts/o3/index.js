@@ -45,7 +45,7 @@ import { useState } from "react";
 // import authorsTableData from "layouts/tables/data/authorsTableData";
 // import projectsTableData from "layouts/tables/data/projectsTableData";
 
-function Tables() {
+function O3() {
   const [text, setText] = useState("");
 
   const onChange = (e) => {
@@ -91,4 +91,4 @@ function Tables() {
   );
 }
 
-export default Tables;
+export default O3;

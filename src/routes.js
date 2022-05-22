@@ -1,5 +1,5 @@
-import Tables from "layouts/tables";
-import Billing from "layouts/billing";
+import Profile from "layouts/profile";
+import O3 from "layouts/o3";
 
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
@@ -10,10 +10,10 @@ const routes = [
   {
     type: "collapse",
     name: "Manage O3 Questions",
-    key: "tables",
+    key: "o3",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/o3Questions",
-    component: <Tables />,
+    component: <O3 />,
   },
   {
     type: "collapse",
@@ -21,7 +21,7 @@ const routes = [
     key: "profile",
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: "/profileQuestions",
-    component: <Billing />,
+    component: <Profile />,
   },
   {
     type: "collapse",

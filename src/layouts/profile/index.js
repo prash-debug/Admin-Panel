@@ -11,7 +11,7 @@ import o3ProfileQuestionService from "services/o3-profile.service";
 import axios from "axios";
 import { useState } from "react";
 
-function Billing() {
+function Profile() {
   const [text, setText] = useState("");
 
   const uploadFile = (url, file) => {
@@ -73,4 +73,4 @@ function Billing() {
   );
 }
 
-export default Billing;
+export default Profile;
