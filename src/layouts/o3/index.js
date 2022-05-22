@@ -73,7 +73,6 @@ function O3() {
             />
           </label>
           <span>{text}</span>
-          {/* <Widget publicKey="demopublickey" previewStep clearable onChange={(e) => onChange(e)} /> */}
         </Grid>
         <Grid mt={4}>
           <h3>Download O3 Questions </h3>

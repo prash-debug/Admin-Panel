@@ -8,33 +8,17 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import o3ProfileQuestionService from "services/o3-profile.service";
 
-import axios from "axios";
 import { useState } from "react";
+import CONSTANTS from "constants";
 
 function Profile() {
   const [text, setText] = useState("");
 
-  const uploadFile = (url, file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    axios
-      .put(url, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   const onChange = (e) => {
-    const url = "http://localhost:9000/profile-questions/upload";
+    // const url = "http://localhost:9000/profile-questions/upload";
+    const url = `${CONSTANTS.URLS.BASE_URL}${CONSTANTS.URLS.PROFILE_QUESTIONS_UPLOAD}`;
     const file = e.target.files[0];
-    uploadFile(url, file);
+    o3ProfileQuestionService.o3Upload(url, file);
     setText(e.target.files[0].name);
   };
 
@@ -54,8 +38,6 @@ function Profile() {
             />
           </label>
           <span>{text}</span>
-          {/* <input className="upload-btn" type="file" onChange={onChange} accept="image/*" /> */}
-          {/* <Widget publicKey="demopublickey" previewStep clearable onChange={onChange} /> */}
         </Grid>
         <Grid mt={4}>
           <h3>Download Profile Questions File</h3>

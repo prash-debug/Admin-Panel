@@ -4,7 +4,8 @@ import CONSTANTS from "../constants";
 
 const profileQuestionsDownload = () => {
   axios({
-    url: "http://localhost:9000/profile-questions/download",
+    // url: "http://localhost:9000/profile-questions/download",
+    url: `${CONSTANTS.URLS.BASE_URL}${CONSTANTS.URLS.PROFILE_QUESTIONS_DOWNLOAD}`,
     responseType: "blob",
   }).then((response) => {
     const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -15,17 +16,21 @@ const profileQuestionsDownload = () => {
   });
 };
 
-const o3Upload = (event) => {
-  const file = event.target.files[0];
-  const data = new FormData();
-  data.append("file", file);
+const o3Upload = (url, file) => {
+  const formData = new FormData();
+  formData.append("file", file);
   axios
-    .post(CONSTANTS.URLS.O3_QUESTIONS_UPLOAD, data, {
+    .put(url, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     })
-    .then((res) => alert(res));
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 const o3ProfileQuestionService = {
