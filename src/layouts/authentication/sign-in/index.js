@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -28,23 +28,28 @@ function SignIn() {
   const [passwordlog, setPasswordlog] = useState(" ");
   const [flag, setFlag] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  const handleSetRememberMe = () => setRememberMe((prev) => !prev);
+  useEffect(() => {
+    if (
+      localStorage.getItem("rememberMe") === "true" &&
+      localStorage.getItem("email") &&
+      localStorage.getItem("password")
+    ) {
+      navigate("/profileQuestions");
+    }
+  }, []);
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    const pass = localStorage.getItem("SubmissionPassword").replace(/"/g, "");
-    const mail = localStorage.getItem("SubmissionEmail").replace(/"/g, "");
-    console.log(pass, mail);
+
     if (!emaillog || !passwordlog) {
       setFlag(true);
       console.log("Fill all fields");
-    } else if (passwordlog !== pass || emaillog !== mail) {
-      console.log("LOGIN FAILED");
-      setFlag(true);
     } else {
-      setFlag(false);
-      console.log("LOGIN SUCCESS");
-      navigate("/o3Questions");
+      localStorage.setItem("rememberMe", rememberMe.toString());
+      localStorage.setItem("email", emaillog.toString());
+      localStorage.setItem("password", passwordlog.toString());
+      navigate("/profileQuestions");
     }
   };
 

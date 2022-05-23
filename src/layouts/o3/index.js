@@ -28,7 +28,7 @@ function O3() {
         <Grid item>
           <h3>Upload O3 Questions File</h3>
           <label htmlFor="file-upload" className="custom-file-upload">
-            Custom Upload
+            Upload File
             <input
               id="file-upload"
               className="upload-btn"
