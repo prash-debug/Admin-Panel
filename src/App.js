@@ -5,9 +5,11 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
+import SignIn from "layouts/authentication/sign-in";
 
 import MDBox from "components/MDBox";
 
+import PropTypes from "prop-types";
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
 
@@ -27,6 +29,19 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+import Profile from "layouts/profile";
+import O3 from "layouts/o3";
+
+function RequireAuth({ children }) {
+  // const location = useLocation();
+  const pass = localStorage.getItem("password");
+  const mail = localStorage.getItem("email");
+  if (!pass && !mail) {
+    return <Navigate to="/" />;
+  }
+  return children;
+  // return children;
+}
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -79,18 +94,32 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
-  const getRoutes = (allRoutes) =>
-    allRoutes.map((route) => {
-      if (route.collapse) {
-        return getRoutes(route.collapse);
-      }
+  // const getRoutes = (allRoutes) =>
+  //   allRoutes.map((route) => {
+  //     if (route.collapse) {
+  //       return getRoutes(route.collapse);
+  //     }
+  //     /* eslint no-else-return: ["error", {allowElseIf: false}] */
 
-      if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
-      }
-
-      return null;
-    });
+  //     if (route.route === "/profileQuestions") {
+  //       console.log("route is working");
+  //       return (
+  //         <Route
+  //           exact
+  //           path={route.route}
+  //           element={
+  //             <RequireAuth>
+  //               <Profile />
+  //             </RequireAuth>
+  //           }
+  //           key={route.key}
+  //         />
+  //       );
+  //     } else if (route.route) {
+  //       return <Route exact path={route.route} element={route.component} key={route.key} />;
+  //     }
+  //     return null;
+  //   });
 
   const configsButton = (
     <MDBox
@@ -136,8 +165,26 @@ export default function App() {
         )}
         {layout === "vr" && <Configurator />}
         <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
+          <Route
+            exact
+            path="/profileQuestions"
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            exact
+            path="/o3Questions"
+            element={
+              <RequireAuth>
+                <O3 />
+              </RequireAuth>
+            }
+          />
+
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </ThemeProvider>
     </CacheProvider>
@@ -160,9 +207,32 @@ export default function App() {
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
+        <Route path="/" element={<SignIn />} />
+
+        <Route
+          exact
+          path="/profileQuestions"
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        />
+        <Route
+          exact
+          path="/o3Questions"
+          element={
+            <RequireAuth>
+              <O3 />
+            </RequireAuth>
+          }
+        />
+
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </ThemeProvider>
   );
 }
+RequireAuth.propTypes = {
+  children: PropTypes.node.isRequired,
+};

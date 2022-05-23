@@ -28,7 +28,7 @@ function Profile() {
         <Grid>
           <h3>Upload Profile Questions File</h3>
           <label htmlFor="file-upload" className="custom-file-upload">
-            Custom Upload
+            Upload File
             <input
               id="file-upload"
               className="upload-btn"
