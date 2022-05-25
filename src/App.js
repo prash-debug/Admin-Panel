@@ -94,33 +94,6 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
-  // const getRoutes = (allRoutes) =>
-  //   allRoutes.map((route) => {
-  //     if (route.collapse) {
-  //       return getRoutes(route.collapse);
-  //     }
-  //     /* eslint no-else-return: ["error", {allowElseIf: false}] */
-
-  //     if (route.route === "/profileQuestions") {
-  //       console.log("route is working");
-  //       return (
-  //         <Route
-  //           exact
-  //           path={route.route}
-  //           element={
-  //             <RequireAuth>
-  //               <Profile />
-  //             </RequireAuth>
-  //           }
-  //           key={route.key}
-  //         />
-  //       );
-  //     } else if (route.route) {
-  //       return <Route exact path={route.route} element={route.component} key={route.key} />;
-  //     }
-  //     return null;
-  //   });
-
   const configsButton = (
     <MDBox
       display="flex"
