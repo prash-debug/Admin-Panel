@@ -13,7 +13,6 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "allowElseIf": true,
     "prettier/prettier": [
       "error",
       {
